@@ -8,6 +8,10 @@ class ScalarConverter
 {
 	public:
 		static void	convert(std::string type);
+		ScalarConverter(void);
+		~ScalarConverter(void);
+		ScalarConverter(const ScalarConverter &obj);
+		ScalarConverter &operator=(const ScalarConverter &obj);
 		
 };
 
