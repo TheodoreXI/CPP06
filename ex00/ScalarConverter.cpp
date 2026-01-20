@@ -21,72 +21,77 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &obj)
 	return (*this);
 }
 
-int	parsing(std::string type)
+int	ScalarConverter::parsing(std::string &type)
 {
-	int		one;
-	char	c;
+	int	check;
+	int	count_point;
 
-	one = 0;
-	c = 0;
-	if (type == "")
+	check = 0;
+	count_point = 0;
+	if (type.length() < 1)
 		return (0);
-	for (int i = 0; i < type.length(); i++)
+	if (type.length() == 1 && std::isalpha(type[0]))
+	{
+		return (1);
+	}
+	if (type == "-inff" || type == "+inff" || type == "-inf" || type == "+inf" || type == "nanf" || type == "nan")
+		return (5);
+	for (size_t i = 0; i < type.length(); i++)
 	{
 		if (!std::isdigit(type[i]))
 		{
-			if (type[i] == '\'')
-			{
-				c = 1;
-			}
-			if (type.length() > 1 && type[i] != 'f' && type[i] != '.')
+			check = 1;
+			if ((type[i] != '-' && type[i] != 'f' && type[i] != '.') || (type[i] == 'f' && (i+1) != type.length()) || (type[i] == '-' && i != 0))
 				return (0);
-		}
-		if (!std::isdigit(type[i]))
-		{
 			if (type[i] == '.')
-			{
-
-			}
+				count_point++;
+			if (count_point > 1)
+				return (0);
+			if (type[i] == '-' && (i+1) != type.length())
+				check = 0;
 		}
 	}
+	if (!check)
+		return (2);
+	if (count_point && type.find('f') == std::string::npos)
+		return (3);
+	else if (count_point)
+		return (4);
+	return (0);
 }
 
-void	ScalarConverter::convert(std::string type)
+void	ScalarConverter::convert(std::string &type)
 {
-	int		check;
-	char	c;
-	int		one;
+	// std::cout << ScalarConverter::parsing(type) << "\n"; //must be deleted after
+	int	a = 0;
 
-	c = 0;
-	one = 0;
-	check = 0;
-	if (type == "-inff" || type == "+inff" || type == "nanf")
+	if (ScalarConverter::parsing(type))
 	{
-		check = 3;
-	}
-	else if (type == "-inf" || type == "+inf" || type == "nan")
-	{
-		check = 4;
-	}
-	for (int i = 0; i < type.length(); i++)
-	{
-		if (type[i] == c)
+		switch(ScalarConverter::parsing(type))
 		{
-			if (c != 0)
-				check = 1;
-			break;
-		}
-		if (std::isdigit(type[i]))
-			check = 2;
-		else if (i > 0)
-		{
-			if ((type[i] == '.' || (type[i] == 'f' && (i+1) == type.length())) && one < 2)
+			case 1:
 			{
-				one = 1;
+				a = std::atoi(type.c_str());
+				break;
 			}
-			else
+			case 2:
 			{
-				check = 0;
+				break;
+			}
+			case 3:
+			{
+				break;
+			}
+			case 4:
+			{
+				break;
+			}
+			case 5:
+			{
+				break;
+			}
+			default:
+			{
 				break;
 			}
 		}

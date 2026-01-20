@@ -2,12 +2,14 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <cctype>
 
 
 class ScalarConverter
 {
 	public:
-		static void	convert(std::string type);
+		static void	convert(std::string &type);
+		static int			parsing(std::string &type);
 		ScalarConverter(void);
 		~ScalarConverter(void);
 		ScalarConverter(const ScalarConverter &obj);
