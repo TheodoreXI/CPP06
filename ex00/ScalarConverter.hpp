@@ -2,7 +2,8 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
-#include <cctype>
+// #include <cctype>
+#include <sstream>
 
 
 class ScalarConverter

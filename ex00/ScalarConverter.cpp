@@ -105,7 +105,8 @@ void	ScalarConverter::convert(std::string &type)
 			}
 			case 2:
 			{
-				a = std::atoi(type.c_str());
+				std::stringstream s(type.c_str());
+				s >> a;
 				c = static_cast<char>(a);
 				f = static_cast<float>(a);
 				d = static_cast<double>(a);
@@ -124,7 +125,8 @@ void	ScalarConverter::convert(std::string &type)
 			}
 			case 3:
 			{
-				d = std::atof(type.c_str());
+				std::stringstream s(type.c_str());
+				s >> d;
 				a = static_cast<int>(d);
 				c = static_cast<char>(d);
 				f = static_cast<float>(d);
@@ -143,7 +145,8 @@ void	ScalarConverter::convert(std::string &type)
 			}
 			case 4:
 			{
-				f = std::atof(type.c_str());
+				std::stringstream s(type.c_str());
+				s >> f;
 				a = static_cast<int>(f);
 				c = static_cast<char>(f);
 				d = static_cast<float>(f);
