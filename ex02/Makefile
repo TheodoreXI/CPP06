@@ -1,4 +1,4 @@
-SRCS = Data.cpp Serializer.cpp main.cpp
+SRCS = Base.cpp utils.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 D = $(OBJS:.o=.d)
 CC = c++

@@ -1,6 +1,11 @@
 #include "Data.hpp"
 
-void	Data::ft_init_x(void)
+int	Data::ft_getx(void)
 {
-	x = 10;
+	return (x);
+}
+
+Data::Data(void)
+{
+	x = 15;
 }

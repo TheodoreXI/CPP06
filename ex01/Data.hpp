@@ -3,8 +3,11 @@
 
 struct Data
 {
-	int x;
-	void	ft_init_x(void);
+	private:
+		int x;
+	public:
+		int ft_getx(void);
+		Data(void);
 };
 
 
