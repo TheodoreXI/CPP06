@@ -3,7 +3,7 @@
 
 class B : public Base
 {
-}
+};
 
 
 

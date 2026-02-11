@@ -21,7 +21,7 @@ void identify(Base* p)
 	}
 	else if (dynamic_cast <B*>(p))
 	{
-		std::cout << "the type is A.\n";
+		std::cout << "the type is B.\n";
 	}
 	else
 	{
@@ -33,6 +33,26 @@ void identify(Base& p)
 {
 	try
 	{
-		
+		A a = dynamic_cast<A&>(p);
+		std::cout << "the type is A.\n";
+	}
+	catch (std::exception &e)
+	{
+	}
+	try
+	{
+		B b = dynamic_cast<B&>(p);
+		std::cout << "the type is B.\n";
+	}
+	catch (std::exception &e)
+	{
+	}
+	try
+	{
+		C c = dynamic_cast<C&>(p);
+		std::cout << "the type is C.\n";
+	}
+	catch (std::exception &e)
+	{
 	}
 }
