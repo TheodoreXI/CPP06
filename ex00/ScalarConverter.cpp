@@ -38,7 +38,6 @@ int	ScalarConverter::parsing(std::string &type)
 		return (5);
 	if (type == "nanf" || type == "nan")
 		return (6);
-	//sstrem to convert its much better
 	for (size_t i = 0; i < type.length(); i++)
 	{
 		if (!std::isdigit(type[i]))
@@ -50,8 +49,10 @@ int	ScalarConverter::parsing(std::string &type)
 			{
 				count_point++;
 			}
-			if (count_point > 1 || (i+1) == type.length())
+			if (count_point > 1)
+			{
 				return (0);
+			}
 			if (type[i] == '-' && (i+1) != type.length())
 				check = 0;
 		}
@@ -61,7 +62,10 @@ int	ScalarConverter::parsing(std::string &type)
 	if (count_point && type.find('f') == std::string::npos)
 		return (3);
 	else if (count_point)
+	{
+		type = type.substr(0, type.length()-1);
 		return (4);
+	}
 	return (0);
 }
 
@@ -145,11 +149,13 @@ void	ScalarConverter::convert(std::string &type)
 			}
 			case 4:
 			{
+				std::cout << "this is it " << type.c_str() << "\n";
 				std::stringstream s(type.c_str());
 				s >> f;
+				std::cout << "this is it " << f << "\n";
 				a = static_cast<int>(f);
 				c = static_cast<char>(f);
-				d = static_cast<float>(f);
+				d = static_cast<double>(f);
 				if (a <= 31 || a >= 127)
 				{
 					std::cout << "char: " << "Non displayable" << "\n";
