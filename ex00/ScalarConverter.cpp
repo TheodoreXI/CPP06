@@ -149,10 +149,8 @@ void	ScalarConverter::convert(std::string &type)
 			}
 			case 4:
 			{
-				std::cout << "this is it " << type.c_str() << "\n";
 				std::stringstream s(type.c_str());
 				s >> f;
-				std::cout << "this is it " << f << "\n";
 				a = static_cast<int>(f);
 				c = static_cast<char>(f);
 				d = static_cast<double>(f);
